@@ -7,17 +7,142 @@ workspace "SkyEngine"
         "Dist"
     }
 
-    
+outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
+
 project "SkyCore"
     location "SkyCore"
     kind "SharedLib"
+
+    targetname "skycore"
+    language "C++"
+    targetdir ("bin/" .. outputdir .. "/%{prj.name}")
+    objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
     files {
         "%{prj.name}/**.cpp",
         "%{prj.name}/**.h",
     }
+    includedirs {
+        "%{prj.name}/**/"
+    }
+    
+    filter "configurations:Debug"
+        symbols "On"
+        defines
+        {
+            "SKY_DEBUG"
+        }
+    
+    filter "configurations:Release"
+        optimize "On"
 
+        defines
+        {
+            "SKY_RELEASE"
+        }
+    
+    filter "configurations:Dist"
+        optimize "On"
 
+        defines
+        {
+            "SKY_DIST"
+        }
+    
+    filter "system:Windows"
+        defines
+        {
+            "SKY_WINDOWS"
+        }
+    
+    filter "system:Linux"
+        defines
+        {
+            "SKY_LINUX"
+        }
+        
+    filter "system:Darwin"
+        defines
+        {
+            "SKY_MAC"
+        }
+    filter { "configurations:Debug", "system:Windows" }
+        buildoptions "/MTd"
+    
+    filter { "configurations:Release", "system:Windows" }
+        buildoptions "/MT"
+
+    filter { "configurations:Dist", "system:Windows" }
+        buildoptions "/MT"
+
+project "SkyEditor"
+    location "SkyEditor"
+    kind "ConsoleApp"
+    
+    targetname "skyeditor"
+    language "C++"
+
+    targetdir ("bin/" .. outputdir .. "/%{prj.name}")
+    objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
+    
+    
+    files {
+        "%{prj.name}/**.cpp",
+        "%{prj.name}/**.h",
+    }
+    includedirs {
+        "%{prj.name}/**/"
+    }
+
+    filter "configurations:Debug"
+        symbols "On"
+        defines
+        {
+            "SKY_DEBUG"
+        }
+    
+    filter "configurations:Release"
+        optimize "On"
+
+        defines
+        {
+            "SKY_RELEASE"
+        }
+    
+    filter "configurations:Dist"
+        optimize "On"
+
+        defines
+        {
+            "SKY_DIST"
+        }
+
+    filter "system:Windows"
+        defines
+        {
+            "SKY_WINDOWS"
+        }
+    
+    filter "system:Linux"
+        defines
+        {
+            "SKY_LINUX"
+        }
+        
+    filter "system:Darwin"
+        defines
+        {
+            "SKY_MAC"
+        }
+    filter { "configurations:Debug", "system:Windows" }
+        buildoptions "/MTd"
+    
+    filter { "configurations:Release", "system:Windows" }
+        buildoptions "/MT"
+
+    filter { "configurations:Dist", "system:Windows" }
+        buildoptions "/MT"
+        
 newaction {
     trigger = "clean",
     description = "Remove all binaries, intermediate binaries and project files.",
