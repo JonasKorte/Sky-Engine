@@ -19,19 +19,19 @@ PrintHelp
 else
 if [ "$2" = "mac" ] ;then
     echo using mac
-    ./vendor/premake5mac $1
+    ./vendor/premake5mac/premake5 $1
     exit
 fi
 if [ "$2" = "linux" ] ;then
     echo using linux
-    ./vendor/premake5lin $1
+    ./vendor/premake5lin/premake5 $1
     exit
 fi
 if [ "$(uname)" = "Darwin" ]; then
     echo using mac
-    ./vendor/premake5mac $1
+    ./vendor/premake5mac/premake5 $1
 elif [ "$(expr substr "$(uname -s)" 1 5)" = "Linux" ]; then
     echo using linux
-    ./vendor/premake5lin $1
+        ./vendor/premake5lin/premake5 $1
     fi
 fi
