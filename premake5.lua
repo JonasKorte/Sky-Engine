@@ -24,6 +24,13 @@ project "SkyCore"
         "%{prj.name}/**.c",
         "%{prj.name}/**.m",
     }
+
+    removefiles {
+        "%{prj.name}/vendor/glfw/**.c",
+        "%{prj.name}/vendor/glfw/**.h",
+        "%{prj.name}/vendor/glfw/**.m",
+        "%{prj.name}/vendor/glfw/**.cpp",
+    }
     includedirs {
         "%{prj.name}/**/"
     }
