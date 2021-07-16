@@ -32,7 +32,13 @@ project "SkyCore"
         "%{prj.name}/vendor/glfw/**.cpp",
     }
     includedirs {
-        "%{prj.name}/**/"
+        "%{prj.name}/src/**/",
+        "%{prj.name}/src/",
+        "%{prj.name}/vendor/glad/**/"
+    }
+
+    links {
+        "glfw3"
     }
     
     filter "configurations:Debug"

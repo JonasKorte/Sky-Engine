@@ -26,6 +26,8 @@ namespace SkyCore
         }
 
         glfwSetErrorCallback(error_callback);
+
+        return true;
     }
 
     SBool Engine::CreateWindow(SCharArray title, SInt width, SInt height, SBool fullscreen)
@@ -55,6 +57,8 @@ namespace SkyCore
             LOGFATAL("Unable to load OpenGL!");
             return false;
         }
+
+        return true;
     }
 
     SBool Engine::Cleanup()
@@ -62,5 +66,7 @@ namespace SkyCore
         glfwDestroyWindow(this->m_window);
 
         glfwTerminate();
+
+        return true;
     }
 }
