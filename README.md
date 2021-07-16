@@ -12,7 +12,7 @@ git clone https://github.com/JonasKorte/Sky-Engine.git
 
 ### Download zipped file:
 #### 1.
-Navigate to [GitHub repository](https://github.com/JonasKorte/Sky-Engine) of this project.
+Navigate to the [GitHub repository](https://github.com/JonasKorte/Sky-Engine) of this project.
 
 #### 2.
 Click on "Code" then "Download ZIP" or [download it directly](https://github.com/JonasKorte/Sky-Engine/archive/refs/heads/master.zip).
@@ -45,7 +45,7 @@ build.bat vs2019
 Double click the generated SkyEngine.sln file to open it in Visual Studio.
 
 ### 4.
-In Visual Studio, go to Configurations dropdown, and select "Dist".
+In Visual Studio, go to the Configurations dropdown, and select "Dist".
 
 ### 5.
 Go to the "Build" menu, and run "Build Solution" or press "F5".
