@@ -42,13 +42,23 @@ namespace SkyCore
         glfwWindowHint(GLFW_ALPHA_BITS, 8);
         glfwWindowHint(GLFW_DOUBLEBUFFER, 1);
 
-        this->m_window = glfwCreateWindow(width, height, title, NULL, NULL);
+        if (fullscreen)
+        {
+            this->m_window = glfwCreateWindow(width, height, title, glfwGetPrimaryMonitor(), NULL);
+        }
+        else
+        {
+            this->m_window = glfwCreateWindow(width, height, title, NULL, NULL);
+        }
+
 
         if (!this->m_window)
         {
             LOGFATAL("Unable to create window!");
             return false;
         }
+
+        glfwSetWindowUserPointer(this->m_window, this);
 
         glfwMakeContextCurrent(this->m_window);
 
@@ -58,7 +68,30 @@ namespace SkyCore
             return false;
         }
 
+        glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+
+        this->SetViewport(0, 0, width, height);
+
         return true;
+    }
+
+    SVoid Engine::MainLoop()
+    {
+        while (!glfwWindowShouldClose(this->m_window))
+        {
+            glfwPollEvents();
+
+            glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+            glfwSwapBuffers(this->m_window);
+        }
+
+        return;
+    }
+
+    SVoid Engine::SetViewport(SInt x, SInt y, SInt width, SInt height)
+    {
+        glViewport(x, y, width, height);
     }
 
     SBool Engine::Cleanup()

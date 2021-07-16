@@ -23,13 +23,8 @@ project "SkyCore"
         "%{prj.name}/**.h",
         "%{prj.name}/**.c",
         "%{prj.name}/**.m",
-    }
-
-    removefiles {
-        "%{prj.name}/vendor/glfw/**.c",
-        "%{prj.name}/vendor/glfw/**.h",
-        "%{prj.name}/vendor/glfw/**.m",
-        "%{prj.name}/vendor/glfw/**.cpp",
+        "%{prj.name}/vendor/glad/**.c",
+        "%{prj.name}/vendor/glad/**.h",
     }
     includedirs {
         "%{prj.name}/src/**/",
@@ -38,7 +33,9 @@ project "SkyCore"
     }
 
     links {
-        "glfw3"
+        "glfw3",
+        "pthread",
+        "dl"
     }
     
     filter "configurations:Debug"
@@ -102,13 +99,25 @@ project "SkyEditor"
     
     
     files {
-        "%{prj.name}/**.cpp",
-        "%{prj.name}/**.h",
-        "%{prj.name}/**.c",
-        "%{prj.name}/**.m",
+        "%{prj.name}/src/**.cpp",
+        "%{prj.name}/src/**.h",
+        "%{prj.name}/src/**.c",
+        "%{prj.name}/src/**.m",
     }
+
     includedirs {
-        "%{prj.name}/**/"
+        "%{prj.name}/src/**/",
+        "%{prj.name}/src/",
+        "SkyCore/vendor/glad/**/",
+        "SkyCore/src/**",
+        "SkyCore/src/",
+    }
+
+    links {
+        "skycore",
+        "glfw3",
+        "pthread",
+        "dl"
     }
 
     filter "configurations:Debug"

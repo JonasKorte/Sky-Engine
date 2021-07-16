@@ -20,6 +20,8 @@ namespace SkyCore
         SBool CreateWindow(SCharArray title, SInt width, SInt height, SBool fullscreen);
         SVoid MainLoop();
 
+        SVoid SetViewport(SInt x, SInt y, SInt width, SInt height);
+
     private:
         SBool Cleanup();
 
