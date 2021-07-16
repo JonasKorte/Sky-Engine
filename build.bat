@@ -3,7 +3,7 @@
 IF "%~1" == "" GOTO PrintHelp
 IF "%~1" == "compile" GOTO Compile
 
-vendor\premake5.exe %1
+vendor\premake5win\premake5.exe %1
 GOTO Done
 
 :PrintHelp
@@ -15,7 +15,6 @@ echo   compile           Will generate make file then compile using the make fil
 echo   clean             Remove all binaries and intermediate binaries and project files.
 echo   codelite          Generate CodeLite project files
 echo   gmake2             Generate GNU makefiles for Linux
-echo   vs2013            Generate Visual Studio 2013 project files
 echo   vs2015            Generate Visual Studio 2015 project files
 echo   vs2017            Generate Visual Studio 2017 project files
 echo   vs2019            Generate Visual Studio 2019 project files

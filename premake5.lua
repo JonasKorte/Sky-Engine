@@ -21,6 +21,8 @@ project "SkyCore"
     files {
         "%{prj.name}/**.cpp",
         "%{prj.name}/**.h",
+        "%{prj.name}/**.c",
+        "%{prj.name}/**.m",
     }
     includedirs {
         "%{prj.name}/**/"
@@ -89,6 +91,8 @@ project "SkyEditor"
     files {
         "%{prj.name}/**.cpp",
         "%{prj.name}/**.h",
+        "%{prj.name}/**.c",
+        "%{prj.name}/**.m",
     }
     includedirs {
         "%{prj.name}/**/"

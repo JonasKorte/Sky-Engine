@@ -7,7 +7,6 @@ echo
 echo clean                Remove all binaries and generated files
 echo codelite           Generate CodeLite project files
 echo gmake2           Generate GNU makefiles for POSIX, MinGW, and Cygwin
-echo vs2013            Generate Visual Studio 2013 project files
 echo vs2015            Generate Visual Studio 2015 project files
 echo vs2017            Generate Visual Studio 2017 project files
 echo vs2019            Generate Visual Studio 2019 project files
