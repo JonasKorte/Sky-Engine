@@ -1,6 +1,5 @@
 #pragma once
 #include <vector3.h>
-#include <vector2.h>
 #include <vector>
 
 #include <glad.h>
@@ -15,7 +14,7 @@ namespace SkyCore
             Vector3f normal;
             Vector3f tangent;
             Vector3f bitangent;
-            Vector2f uv;
+            Vector3f uv;
         };
 
         struct Mesh
