@@ -7,6 +7,13 @@ namespace SkyCore
         MeshRendererBase::MeshRendererBase(Mesh mesh)
         {
             this->m_mesh = mesh;
+            this->m_transform = TransformBase3D::DefaultTransform();
+        }
+
+        MeshRendererBase::MeshRendererBase(Mesh mesh, TransformBase3D* transform)
+        {
+            this->m_mesh = mesh;
+            this->m_transform = transform;
         }
 
         MeshRendererBase::~MeshRendererBase()
@@ -23,6 +30,27 @@ namespace SkyCore
 
             for (SInt i = 0; i < this->m_mesh.vertices.size(); i++)
             {
+                Vector3f position = this->m_mesh.vertices[i].position;
+
+                position = position + this->m_transform->GetPosition();
+                position = position * this->m_transform->GetScale();
+
+                SFloat tmp = position.y;
+
+                position.y = position.y * cos(this->m_transform->GetRotation().x) - position.z * sin(this->m_transform->GetRotation().x);
+                position.z = tmp * sin(this->m_transform->GetRotation().x) + position.z * cos(this->m_transform->GetRotation().x);
+
+                tmp = position.x;
+
+                position.x = position.x * cos(this->m_transform->GetRotation().y) + position.z * sin(this->m_transform->GetRotation().y);
+                position.z = -tmp * sin(this->m_transform->GetRotation().y) + position.z * cos(this->m_transform->GetRotation().y);
+
+                tmp = position.x;
+
+                position.x = position.x * cos(this->m_transform->GetRotation().z) - position.y * sin(this->m_transform->GetRotation().z);
+                position.y = tmp * sin(this->m_transform->GetRotation().z) + position.y * cos(this->m_transform->GetRotation().z);
+ 
+
                 vertices.push_back(this->m_mesh.vertices[i].position);
                 vertices.push_back(this->m_mesh.vertices[i].normal);
                 vertices.push_back(this->m_mesh.vertices[i].tangent);
@@ -67,6 +95,19 @@ namespace SkyCore
         Mesh MeshRendererBase::GetMesh()
         {
             return this->m_mesh;
+        }
+
+        SVoid MeshRendererBase::SetTransform(TransformBase3D* transform)
+        {
+            this->m_transform = transform;
+
+            this->Cleanup();
+            this->Initialize();
+        }
+
+        TransformBase3D* MeshRendererBase::GetTransform()
+        {
+            return this->m_transform;
         }
 
         SVoid MeshRendererBase::Cleanup()

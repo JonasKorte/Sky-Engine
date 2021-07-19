@@ -1,5 +1,8 @@
 #pragma once
 #include <vector3.h>
+#include <transform.h>
+#include <math.h>
+
 #include <vector>
 
 #include <glad.h>
@@ -27,6 +30,7 @@ namespace SkyCore
         {
         public:
             MeshRendererBase(Mesh mesh);
+            MeshRendererBase(Mesh mesh, TransformBase3D* transform);
             ~MeshRendererBase();
 
             SBool Initialize();
@@ -34,10 +38,15 @@ namespace SkyCore
             SVoid Draw();
 
             Mesh GetMesh();
+
+            SVoid SetTransform(TransformBase3D* transform);
+            TransformBase3D* GetTransform();
         private:
             SVoid Cleanup();
-
+            
             Mesh m_mesh;
+
+            TransformBase3D* m_transform;
 
             SUInt m_vbo;
             SUInt m_ibo;
