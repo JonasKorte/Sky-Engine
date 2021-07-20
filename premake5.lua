@@ -66,6 +66,10 @@ project "SkyCore"
         {
             "SKY_WINDOWS"
         }
+
+        libdirs {
+            "/vendor/libglfw"
+        }
     
     filter "system:Linux"
         defines
@@ -147,6 +151,10 @@ project "SkyEditor"
         defines
         {
             "SKY_WINDOWS"
+        }
+
+        libdirs {
+            "/vendor/libglfw"
         }
     
     filter "system:Linux"
