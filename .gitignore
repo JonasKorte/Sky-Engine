@@ -10,3 +10,6 @@ Makefile
 
 /bin
 /bin-int
+
+/.vs
+**/.vs
