@@ -11,7 +11,7 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 project "SkyCore"
     location "SkyCore"
-    kind "SharedLib"
+    kind "StaticLib"
 
     targetname "skycore"
     language "C++"
@@ -29,13 +29,18 @@ project "SkyCore"
     includedirs {
         "%{prj.name}/src/**/",
         "%{prj.name}/src/",
-        "%{prj.name}/vendor/glad/**/"
+        "%{prj.name}/vendor/glad/**/",
+        "vendor/libglfw/include/"
+    }
+
+    
+    libdirs {
+        "vendor/libglfw"
     }
 
     links {
         "glfw3",
-        "pthread",
-        "dl"
+        "opengl32"
     }
     
     filter "configurations:Debug"
@@ -66,15 +71,16 @@ project "SkyCore"
         {
             "SKY_WINDOWS"
         }
-
-        libdirs {
-            "/vendor/libglfw"
-        }
     
     filter "system:Linux"
         defines
         {
             "SKY_LINUX"
+        }
+
+        links {
+            "pthread",
+            "dl"
         }
         
     filter "system:Darwin"
@@ -82,14 +88,6 @@ project "SkyCore"
         {
             "SKY_MAC"
         }
-    filter { "configurations:Debug", "system:Windows" }
-        buildoptions "/MTd"
-    
-    filter { "configurations:Release", "system:Windows" }
-        buildoptions "/MT"
-
-    filter { "configurations:Dist", "system:Windows" }
-        buildoptions "/MT"
 
 project "SkyEditor"
     location "SkyEditor"
@@ -115,13 +113,18 @@ project "SkyEditor"
         "SkyCore/vendor/glad/**/",
         "SkyCore/src/**",
         "SkyCore/src/",
+        "vendor/libglfw/include/"
+    }
+
+    
+    libdirs {
+        "vendor/libglfw"
     }
 
     links {
         "skycore",
         "glfw3",
-        "pthread",
-        "dl"
+        "opengl32"
     }
 
     filter "configurations:Debug"
@@ -152,15 +155,16 @@ project "SkyEditor"
         {
             "SKY_WINDOWS"
         }
-
-        libdirs {
-            "/vendor/libglfw"
-        }
     
     filter "system:Linux"
         defines
         {
             "SKY_LINUX"
+        }
+
+        links {
+            "pthread",
+            "dl"
         }
         
     filter "system:Darwin"
@@ -168,14 +172,6 @@ project "SkyEditor"
         {
             "SKY_MAC"
         }
-    filter { "configurations:Debug", "system:Windows" }
-        buildoptions "/MTd"
-    
-    filter { "configurations:Release", "system:Windows" }
-        buildoptions "/MT"
-
-    filter { "configurations:Dist", "system:Windows" }
-        buildoptions "/MT"
         
 newaction {
     trigger = "clean",
