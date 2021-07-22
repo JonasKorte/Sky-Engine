@@ -31,12 +31,8 @@ set /p vspath=< .vspath
 
 echo Visual Studio Path: %vspath
 
-IF %2 == "vs2015" set /p "vsversion" = "2015"
-IF %2 == "vs2017" set /p "vsversion" = "2017"
-IF %2 == "vs2019 " set /p "vsversion" = "2019"
-
 if not defined DevEnvDir (
-    call "%vspath%\%vsversion%\Community\Common7\Tools\VsDevCmd.bat"
+    call "%vspath%\Community\Common7\Tools\VsDevCmd.bat"
 )
 
 set solutionFile="Workspace.sln"
