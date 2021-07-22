@@ -27,19 +27,22 @@ GOTO Done
 
 vendor\premake5win\premake5.exe %2
 
-set /p vspath=< .vspath
+set /p vspath=<.vspath
 
-echo Visual Studio Path: %vspath
+echo Visual Studio Path: "%vspath%\Common7\Tools\VsDevCmd.bat"
 
-if not defined DevEnvDir (
-    call "%vspath%\Community\Common7\Tools\VsDevCmd.bat"
-)
+call "%vspath%\Common7\Tools\VsDevCmd.bat"
 
-set solutionFile="Workspace.sln"
+set solutionFile="SkyEngine.sln"
 msbuild /t:Build /p:Configuration=Debug /p:Platform=x64 %solutionFile%
+
+GOTO Done
 
 :VsPath
 
-echo %2 > .vspath
+set path=%2
+set path=%path:"=%
+
+echo %path%>.vspath
 
 :Done
