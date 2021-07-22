@@ -73,7 +73,7 @@ Run:
 build.bat vspath ~path~
 ```
 
-Note: Replace ~path~ with the Visual Studio path copied from step 2, wrapped in quotation marks.
+Note: Replace \~path\~ with the Visual Studio path copied from step 2, wrapped in quotation marks.
 
 ### 4.
 For Visual Studio 2015, run:
