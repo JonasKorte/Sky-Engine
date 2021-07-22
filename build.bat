@@ -34,7 +34,7 @@ echo Visual Studio Path: "%vspath%\Common7\Tools\VsDevCmd.bat"
 call "%vspath%\Common7\Tools\VsDevCmd.bat"
 
 set solutionFile="SkyEngine.sln"
-msbuild /t:Build /p:Configuration=Debug /p:Platform=x64 %solutionFile%
+msbuild /t:Build /p:Configuration=%3 /p:Platform=x64 %solutionFile%
 
 GOTO Done
 

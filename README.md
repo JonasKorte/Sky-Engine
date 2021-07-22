@@ -78,17 +78,17 @@ Note: Replace \~path\~ with the Visual Studio path copied from step 2, wrapped i
 ### 4.
 For Visual Studio 2015, run:
 ```
-build.bat compile vs2015
+build.bat compile vs2015 Dist
 ```
 
 For Visual Studio 2017, run:
 ```
-build.bat compile vs2017
+build.bat compile vs2017 Dist
 ```
 
 For Visual Studio 2019, run:
 ```
-build.bat compile vs2019
+build.bat compile vs2019 Dist
 ```
 
 ### 5.
