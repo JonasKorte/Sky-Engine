@@ -13,3 +13,7 @@ Makefile
 
 /.vs
 **/.vs
+
+.vspath
+
+**/.vspath

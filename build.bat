@@ -2,6 +2,7 @@
 
 IF "%~1" == "" GOTO PrintHelp
 IF "%~1" == "compile" GOTO Compile
+IF "%~1" == "vspath" GOTO VsPath
 
 vendor\premake5win\premake5.exe %1
 GOTO Done
@@ -24,13 +25,25 @@ GOTO Done
 
 :Compile
 
-vendor\premake5.exe vs2019
+vendor\premake5win\premake5.exe %2
+
+set /p vspath=< .vspath
+
+echo Visual Studio Path: %vspath
+
+IF %2 == "vs2015" set /p "vsversion" = "2015"
+IF %2 == "vs2017" set /p "vsversion" = "2017"
+IF %2 == "vs2019 " set /p "vsversion" = "2019"
 
 if not defined DevEnvDir (
-    call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\Tools\VsDevCmd.bat"
+    call "%vspath%\%vsversion%\Community\Common7\Tools\VsDevCmd.bat"
 )
 
 set solutionFile="Workspace.sln"
 msbuild /t:Build /p:Configuration=Debug /p:Platform=x64 %solutionFile%
+
+:VsPath
+
+echo %2 > .vspath
 
 :Done
