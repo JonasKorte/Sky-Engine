@@ -20,7 +20,7 @@ Click on "Code" then "Download ZIP" or [download it directly](https://github.com
 #### 3.
 Extract the downloaded file.
 
-## Building on Windows:
+## Building on Windows (Through Visual Studio):
 
 ### 1.
 Run the command prompt as administrator and navigate to the directory where Sky Engine is either extracted or cloned.
@@ -51,6 +51,47 @@ In Visual Studio, go to the Configurations dropdown, and select "Dist".
 Go to the "Build" menu, and run "Build Solution" or press "F5".
 
 ### 6.
+Done!
+
+To clean the build files, run:
+```
+build.bat clean
+```
+
+## Building on Windows (Through msbuild):
+
+### 1.
+Run the command prompt as administrator and navigate to the directory where Sky Engine is either extracted or cloned.
+
+### 2.
+Locate your Visual Studio installation directory (the directory which has the folder "Common7" in it) and copy its path.
+
+### 3.
+Run:
+
+```
+build.bat vspath ~path~
+```
+
+Note: Replace ~path~ with the Visual Studio path copied from step 2, wrapped in quotation marks.
+
+### 4.
+For Visual Studio 2015, run:
+```
+build.bat compile vs2015
+```
+
+For Visual Studio 2017, run:
+```
+build.bat compile vs2017
+```
+
+For Visual Studio 2019, run:
+```
+build.bat compile vs2019
+```
+
+### 5.
 Done!
 
 To clean the build files, run:
