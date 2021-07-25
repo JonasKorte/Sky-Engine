@@ -39,8 +39,7 @@ project "SkyCore"
     }
 
     links {
-        "glfw3",
-        "opengl32"
+        "glfw3"
     }
     
     filter "configurations:Debug"
@@ -70,6 +69,10 @@ project "SkyCore"
         defines
         {
             "SKY_WINDOWS"
+        }
+
+        links {
+            "opengl32"
         }
     
     filter "system:Linux"
@@ -124,7 +127,6 @@ project "SkyEditor"
     links {
         "skycore",
         "glfw3",
-        "opengl32"
     }
 
     filter "configurations:Debug"
@@ -154,6 +156,10 @@ project "SkyEditor"
         defines
         {
             "SKY_WINDOWS"
+        }
+
+        links {
+            "opengl32"
         }
     
     filter "system:Linux"
